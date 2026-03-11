@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline | Ethan B. Katz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-parchment: #f8f5f0;
+            --color-gold: #9b7d3a;
+            --color-gold-light: #c9a95b;
+            --color-slate: #4a5568;
+            --color-warm-white: #fdfcfa;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-parchment);
+            color: var(--color-ink);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+        nav {
+            background: var(--color-warm-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(155, 125, 58, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        nav .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        nav .site-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+        nav .site-name:hover { color: var(--color-gold); }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-slate);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--color-gold); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--color-ink);
+        }
+        .intro {
+            color: var(--color-slate);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        .timeline-vertical {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .timeline-vertical::before {
+            content: '';
+            position: absolute;
+            left: 70px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--color-gold-light), var(--color-gold));
+        }
+        .timeline-event {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            position: relative;
+        }
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: 62px;
+            top: 1.85rem;
+            width: 18px;
+            height: 18px;
+            background: var(--color-parchment);
+            border: 3px solid var(--color-gold);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .event-year {
+            flex-shrink: 0;
+            width: 55px;
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            text-align: right;
+            padding-top: 0.25rem;
+        }
+        .event-content {
+            flex: 1;
+            background: var(--color-warm-white);
+            border: 1px solid rgba(155, 125, 58, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-left: 30px;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .event-content:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: translateX(4px);
+        }
+        .event-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-ink);
+            margin-bottom: 0.5rem;
+        }
+        .event-content p {
+            font-size: 0.95rem;
+            color: var(--color-slate);
+            line-height: 1.6;
+        }
+        .event-content em {
+            color: var(--color-gold);
+            font-style: italic;
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--color-warm-white);
+            border-top: 1px solid rgba(155, 125, 58, 0.15);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .social-links a {
+            color: var(--color-slate);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover { color: var(--color-gold); }
+        @media (max-width: 600px) {
+            .timeline-vertical::before { left: 45px; }
+            .timeline-event::before { left: 37px; width: 16px; height: 16px; }
+            .event-year { width: 40px; font-size: 0.9rem; }
+            .event-content { margin-left: 15px; padding: 1rem; }
+            nav ul { gap: 1rem; }
+            nav .nav-inner { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="site-name">Ethan B. Katz</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="timeline.html" class="active">Timeline</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="writing.html">Writing</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>A Century of Jewish-Muslim Relations in France</h1>
+        <p class="intro">Ethan's research traces Jewish-Muslim encounters from World War I to today, revealing a history far more complex than headlines suggest.</p>
+        
+        <div class="timeline-vertical">
+            <div class="timeline-event">
+                <div class="event-year">1914</div>
+                <div class="event-content">
+                    <h2>World War I Begins</h2>
+                    <p>Jews and Muslims from North Africa fight together in French trenches — the first large-scale encounter between these communities on French soil.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="event-year">1926</div>
+                <div class="event-content">
+                    <h2>Grande Mosquée de Paris Opens</h2>
+                    <p>France builds its first major mosque, partly to honor Muslim soldiers. The mosque would later play a contested role during WWII.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="event-year">1934</div>
+                <div class="event-content">
+                    <h2>Constantine Riots</h2>
+                    <p>Deadly violence between Muslims and Jews in Algeria kills 25 Jews and 3 Muslims — a rupture whose causes have been meticulously uncovered by historians.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="event-year">1940–43</div>
+                <div class="event-content">
+                    <h2>The Algiers Underground</h2>
+                    <p>Mostly Jewish resistance fighters work alongside French officers — some of them antisemites — to help secure Operation Torch. <em>The subject of Ethan's forthcoming book.</em></p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="event-year">1962</div>
+                <div class="event-content">
+                    <h2>Algerian Independence</h2>
+                    <p>Mass migration brings hundreds of thousands of Jews and Muslims from North Africa to mainland France, transforming both communities.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="event-year">2015</div>
+                <div class="event-content">
+                    <h2>Charlie Hebdo & Hyper Cacher</h2>
+                    <p>Terrorist attacks at a satirical magazine and a kosher supermarket raise urgent questions about coexistence — questions with deep historical roots.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-event">
+                <div class="event-year">Today</div>
+                <div class="event-content">
+                    <h2>The Present Crisis</h2>
+                    <p>Antisemitism and Islamophobia persist. Understanding how these hatreds have long been intertwined is essential to addressing them.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://scholar.google.com/citations?user=p2s5SUcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            <a href="https://berkeley.academia.edu/EthanKatz" target="_blank">Academia.edu</a>
+            <a href="https://www.linkedin.com/in/ethan-katz-4604a517/" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>

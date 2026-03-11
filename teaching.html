@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching | Ethan B. Katz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-parchment: #f8f5f0;
+            --color-gold: #9b7d3a;
+            --color-gold-light: #c9a95b;
+            --color-slate: #4a5568;
+            --color-warm-white: #fdfcfa;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-parchment);
+            color: var(--color-ink);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+        nav {
+            background: var(--color-warm-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(155, 125, 58, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        nav .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        nav .site-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+        nav .site-name:hover { color: var(--color-gold); }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-slate);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--color-gold); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-ink);
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--color-gold);
+        }
+        .semester-label {
+            font-size: 1.1rem;
+            color: var(--color-gold);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-ink);
+            margin: 2.5rem 0 1rem;
+        }
+        .course {
+            background: var(--color-warm-white);
+            border: 1px solid rgba(155, 125, 58, 0.15);
+            border-radius: 8px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .course-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            margin-bottom: 0.4rem;
+        }
+        .course-meta {
+            font-size: 0.95rem;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+        }
+        .course-description {
+            color: var(--color-slate);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .course-link {
+            display: inline-block;
+            color: var(--color-gold);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .course-link:hover { text-decoration: underline; }
+        .past-courses {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(155, 125, 58, 0.15);
+        }
+        .past-courses h2 {
+            margin-top: 0;
+        }
+        .past-courses-list {
+            color: var(--color-slate);
+            line-height: 2;
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--color-warm-white);
+            border-top: 1px solid rgba(155, 125, 58, 0.15);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .social-links a {
+            color: var(--color-slate);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover { color: var(--color-gold); }
+        @media (max-width: 600px) {
+            nav ul { gap: 1rem; }
+            nav .nav-inner { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="site-name">Ethan B. Katz</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="timeline.html">Timeline</a></li>
+                <li><a href="teaching.html" class="active">Teaching</a></li>
+                <li><a href="writing.html">Writing</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Teaching</h1>
+        <p class="semester-label">2025–2026 Academic Year</p>
+
+        <div class="course">
+            <h3 class="course-title">Berkeley Bridging Fellowship Program</h3>
+            <p class="course-meta">Fall 2025 & Spring 2026 · 2 credits per semester · Co-convened with Prof. Asad Ahmed</p>
+            <p class="course-description">
+                A unique forum and community-building space focused on cultivating meaningful, supported conversations about Israel and Palestine. The fellowship brings together a diverse cohort of undergraduate students for dialogue sessions led by experienced facilitators, content sessions with leading experts, and skill-building retreats. Fellows develop tangible skills for discussing sensitive topics, build relationships across communities, and design capstone initiatives to extend their learning.
+            </p>
+            <p class="course-description">
+                The program meets Tuesdays 3–5 PM for content sessions, plus several Sunday retreats throughout each semester. It culminates in a meeting with the UC Berkeley Chancellor and student-designed capstone projects.
+            </p>
+            <a href="https://curricularconnections.berkeley.edu/berkeley-bridging-fellowship-program/" target="_blank" class="course-link">Program details & application →</a>
+        </div>
+
+        <div class="past-courses">
+            <h2>Courses Taught</h2>
+            <p class="past-courses-list">
+                At UC Berkeley, Ethan teaches courses on Jewish history, Muslim-Jewish encounters, Zionism and Israel, modern France and its empire, the Middle East and North Africa, and historical methodologies. He also leads workshops on historical and contemporary antisemitism for staff, faculty, students, and community members.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://scholar.google.com/citations?user=p2s5SUcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            <a href="https://berkeley.academia.edu/EthanKatz" target="_blank">Academia.edu</a>
+            <a href="https://www.linkedin.com/in/ethan-katz-4604a517/" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>

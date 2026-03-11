@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing | Ethan B. Katz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-parchment: #f8f5f0;
+            --color-gold: #9b7d3a;
+            --color-gold-light: #c9a95b;
+            --color-slate: #4a5568;
+            --color-warm-white: #fdfcfa;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-parchment);
+            color: var(--color-ink);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+        nav {
+            background: var(--color-warm-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(155, 125, 58, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        nav .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        nav .site-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+        nav .site-name:hover { color: var(--color-gold); }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-slate);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--color-gold); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--color-ink);
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--color-gold);
+        }
+        .writing-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .writing-item {
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(155, 125, 58, 0.12);
+        }
+        .writing-item:last-child {
+            border-bottom: none;
+        }
+        .writing-item a {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-ink);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .writing-item a:hover { color: var(--color-gold); }
+        .writing-venue {
+            font-size: 0.95rem;
+            color: var(--color-slate);
+        }
+        .writing-venue em {
+            color: var(--color-gold);
+            font-style: italic;
+        }
+        .section-divider {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--color-gold);
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(155, 125, 58, 0.2);
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--color-warm-white);
+            border-top: 1px solid rgba(155, 125, 58, 0.15);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .social-links a {
+            color: var(--color-slate);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover { color: var(--color-gold); }
+        @media (max-width: 600px) {
+            nav ul { gap: 1rem; }
+            nav .nav-inner { flex-direction: column; gap: 1rem; }
+            .writing-item a { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="site-name">Ethan B. Katz</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="timeline.html">Timeline</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="writing.html" class="active">Writing</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Selected Writing</h1>
+        
+        <div class="writing-list">
+            <div class="writing-item">
+                <a href="https://www.sourcesjournal.org/articles/when-is-anti-zionism-antisemitic-getting-beyond-the-polemics" target="_blank">When Is Anti-Zionism Antisemitic? Getting Beyond the Polemics</a>
+                <p class="writing-venue"><em>Sources Journal</em>, December 2025</p>
+            </div>
+            
+            <div class="writing-item">
+                <a href="https://www.theatlantic.com/international/archive/2017/05/how-marine-le-pen-relies-on-dividing-french-jews-and-muslims/524453/" target="_blank">How Marine Le Pen Relies on Dividing French Jews and Muslims</a>
+                <p class="writing-venue"><em>The Atlantic</em>, 2017</p>
+            </div>
+            
+            <div class="writing-item">
+                <a href="https://www.cnn.com/2020/06/29/opinions/black-jewish-americans-united-katz-lipstadt/index.html" target="_blank">Far More Unites Black and Jewish Americans Than Divides Them</a>
+                <p class="writing-venue"><em>CNN Opinion</em>, 2020 · with Deborah Lipstadt</p>
+            </div>
+            
+            <div class="writing-item">
+                <a href="https://lareviewofbooks.org/article/multi-ethnic-france-under-attack/" target="_blank">Multi-Ethnic France Under Attack</a>
+                <p class="writing-venue"><em>Los Angeles Review of Books</em>, 2015</p>
+            </div>
+            
+            <div class="writing-item">
+                <a href="https://jewishreviewofbooks.com/articles/1553/strange-journey/" target="_blank">Strange Journey</a>
+                <p class="writing-venue"><em>Jewish Review of Books</em>, 2015 · with Maud Mandel</p>
+            </div>
+        </div>
+
+        <h2 class="section-divider">The Forward</h2>
+        
+        <div class="writing-list">
+            <div class="writing-item">
+                <a href="https://forward.com/opinion/327082/lessons-of-muslim-jewish-relations-from-1920s-paris/" target="_blank">Lessons of Muslim-Jewish Relations from 1920s Paris</a>
+                <p class="writing-venue"><em>The Forward</em></p>
+            </div>
+            
+            <div class="writing-item">
+                <a href="https://forward.com/opinion/335234/for-french-jews-should-they-stay-or-should-they-go/" target="_blank">For French Jews: Should They Stay or Should They Go?</a>
+                <p class="writing-venue"><em>The Forward</em></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://scholar.google.com/citations?user=p2s5SUcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            <a href="https://berkeley.academia.edu/EthanKatz" target="_blank">Academia.edu</a>
+            <a href="https://www.linkedin.com/in/ethan-katz-4604a517/" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>

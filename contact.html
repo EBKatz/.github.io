@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Ethan B. Katz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-parchment: #f8f5f0;
+            --color-gold: #9b7d3a;
+            --color-gold-light: #c9a95b;
+            --color-slate: #4a5568;
+            --color-warm-white: #fdfcfa;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-parchment);
+            color: var(--color-ink);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+        nav {
+            background: var(--color-warm-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(155, 125, 58, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        nav .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        nav .site-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+        nav .site-name:hover { color: var(--color-gold); }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-slate);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--color-gold); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--color-ink);
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--color-gold);
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-ink);
+            margin: 2.5rem 0 1.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--color-gold);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        .contact-info p {
+            margin-bottom: 0.75rem;
+            color: var(--color-slate);
+        }
+        .contact-info strong {
+            color: var(--color-ink);
+        }
+        .contact-info a {
+            color: var(--color-gold);
+            text-decoration: none;
+        }
+        .contact-info a:hover { text-decoration: underline; }
+        .contact-cta {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-warm-white);
+            border-radius: 8px;
+            border: 1px solid rgba(155, 125, 58, 0.15);
+        }
+        .contact-cta p {
+            color: var(--color-slate);
+            margin-bottom: 1.25rem;
+        }
+        .email-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--color-gold);
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .email-btn:hover {
+            background: var(--color-gold-light);
+            transform: translateY(-2px);
+        }
+        .press-kit {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .press-photo {
+            width: 150px;
+            flex-shrink: 0;
+        }
+        .press-photo img {
+            width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .press-photo a {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--color-gold);
+            text-decoration: none;
+        }
+        .press-photo a:hover { text-decoration: underline; }
+        .press-photo .cv-link {
+            background: var(--color-gold);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 0.75rem;
+            transition: background 0.2s;
+        }
+        .press-photo .cv-link:hover {
+            background: var(--color-gold-light);
+            text-decoration: none;
+        }
+        .press-bio {
+            flex: 1;
+            min-width: 280px;
+        }
+        .press-bio p {
+            color: var(--color-slate);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .roles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .role {
+            padding: 1rem 1.25rem;
+            background: var(--color-warm-white);
+            border-left: 3px solid var(--color-gold);
+            border-radius: 0 6px 6px 0;
+        }
+        .role-title {
+            font-weight: 600;
+            color: var(--color-ink);
+        }
+        .role-org {
+            font-size: 0.9rem;
+            color: var(--color-slate);
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--color-warm-white);
+            border-top: 1px solid rgba(155, 125, 58, 0.15);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .social-links a {
+            color: var(--color-slate);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover { color: var(--color-gold); }
+        @media (max-width: 600px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+            nav ul { gap: 1rem; }
+            nav .nav-inner { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="site-name">Ethan B. Katz</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="timeline.html">Timeline</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="writing.html">Writing</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Contact</h1>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <p><strong>Office:</strong><br>2227 Dwinelle Hall<br>UC Berkeley</p>
+                <p><strong>Email:</strong><br><a href="mailto:ebkatz@berkeley.edu">ebkatz@berkeley.edu</a></p>
+                <p><strong>Department:</strong><br><a href="https://history.berkeley.edu/ethan-katz">History Faculty Page</a></p>
+                <p><strong>Center:</strong><br><a href="https://jewishstudies.berkeley.edu/people/ethan-katz/">Jewish Studies Profile</a></p>
+            </div>
+            
+            <div class="contact-cta">
+                <p>For media inquiries, speaking requests, or academic collaboration:</p>
+                <a href="mailto:ebkatz@berkeley.edu?subject=Inquiry%20from%20Website" class="email-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    Email Ethan Katz
+                </a>
+            </div>
+        </div>
+
+        <h2>Press Kit</h2>
+        
+        <div class="press-kit">
+            <div class="press-photo">
+                <img src="https://history.berkeley.edu/sites/default/files/styles/openberkeley_image_full/public/general/katz_ethan.jpg?itok=Wbu4g1Ok&timestamp=1532108795" alt="Ethan B. Katz headshot">
+                <a href="https://history.berkeley.edu/sites/default/files/general/katz_ethan.jpg" download>Download hi-res photo</a>
+                <a href="https://ethan-katznbspphd.weebly.com/uploads/4/7/1/7/47173479/ethan_katz_short_cv_updated_november_2020_2.pdf" target="_blank" class="cv-link">Download CV (PDF)</a>
+            </div>
+            
+            <div class="press-bio">
+                <p><strong>Bio:</strong> Ethan B. Katz is a historian and author who seeks to illuminate the crises of today by analyzing imprints of the past. He is Associate Professor of History and Jewish Studies and Faculty Director of the Center for Jewish Studies at UC Berkeley. He is the author of <em>The Burdens of Brotherhood: Jews and Muslims from North Africa to France</em> (Harvard, 2015), winner of the National Jewish Book Award and four other major prizes.</p>
+                <p><strong>Speaking:</strong> Available for lectures, panels, and media commentary on antisemitism, Jewish-Muslim relations, French history, and campus climate issues. He has spoken at universities throughout the U.S., Europe, and Israel.</p>
+            </div>
+        </div>
+
+        <h2>Current Roles</h2>
+        
+        <div class="roles-list">
+            <div class="role">
+                <p class="role-title">Faculty Director, Center for Jewish Studies</p>
+                <p class="role-org">UC Berkeley</p>
+            </div>
+            <div class="role">
+                <p class="role-title">Chair, Chancellor's Advisory Committee on Jewish Student Life and Campus Climate</p>
+                <p class="role-org">UC Berkeley</p>
+            </div>
+            <div class="role">
+                <p class="role-title">Co-Founder & Co-Director, Antisemitism Education Initiative</p>
+                <p class="role-org">UC Berkeley</p>
+            </div>
+            <div class="role">
+                <p class="role-title">Associate Professor of History and Jewish Studies</p>
+                <p class="role-org">UC Berkeley · Department of History</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://scholar.google.com/citations?user=p2s5SUcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            <a href="https://berkeley.academia.edu/EthanKatz" target="_blank">Academia.edu</a>
+            <a href="https://www.linkedin.com/in/ethan-katz-4604a517/" target="_blank">LinkedIn</a>
+            <a href="https://twitter.com/EthanKatz79" target="_blank">Twitter</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media | Ethan B. Katz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-parchment: #f8f5f0;
+            --color-gold: #9b7d3a;
+            --color-gold-light: #c9a95b;
+            --color-slate: #4a5568;
+            --color-warm-white: #fdfcfa;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-parchment);
+            color: var(--color-ink);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+        nav {
+            background: var(--color-warm-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(155, 125, 58, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        nav .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        nav .site-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+        nav .site-name:hover { color: var(--color-gold); }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-slate);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--color-gold); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--color-ink);
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--color-gold);
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-ink);
+            margin: 2.5rem 0 1.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--color-gold);
+        }
+        .video-embed {
+            background: var(--color-warm-white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(155, 125, 58, 0.1);
+            margin-bottom: 1rem;
+        }
+        .video-embed iframe {
+            display: block;
+            width: 100%;
+        }
+        .video-caption {
+            padding: 1rem;
+            font-size: 0.95rem;
+            color: var(--color-slate);
+        }
+        .appearances-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .appearance-item {
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(155, 125, 58, 0.1);
+        }
+        .appearance-item:last-child {
+            border-bottom: none;
+        }
+        .appearance-item a {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            color: var(--color-ink);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .appearance-item a:hover { color: var(--color-gold); }
+        .appearance-meta {
+            font-size: 0.9rem;
+            color: var(--color-slate);
+            margin-top: 0.25rem;
+        }
+        .appearance-meta em {
+            color: var(--color-gold);
+        }
+        .press-links {
+            line-height: 2.2;
+            color: var(--color-slate);
+        }
+        .press-links a {
+            color: var(--color-gold);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .press-links a:hover { text-decoration: underline; }
+        .resource-note {
+            background: var(--color-warm-white);
+            padding: 1.25rem 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--color-gold);
+            color: var(--color-slate);
+            margin-top: 2rem;
+        }
+        .resource-note a {
+            color: var(--color-gold);
+            text-decoration: none;
+        }
+        .resource-note a:hover { text-decoration: underline; }
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--color-warm-white);
+            border-top: 1px solid rgba(155, 125, 58, 0.15);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .social-links a {
+            color: var(--color-slate);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover { color: var(--color-gold); }
+        @media (max-width: 600px) {
+            nav ul { gap: 1rem; }
+            nav .nav-inner { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="site-name">Ethan B. Katz</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="timeline.html">Timeline</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="writing.html">Writing</a></li>
+                <li><a href="media.html" class="active">Media</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Media & Appearances</h1>
+        
+        <div class="video-embed">
+            <iframe src="https://player.vimeo.com/video/117474573" width="100%" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            <p class="video-caption">Briefing for journalists in Paris, January 2015 — days after the Charlie Hebdo and Hyper Cacher attacks.</p>
+        </div>
+
+        <h2>Select Appearances</h2>
+        
+        <div class="appearances-list">
+            <div class="appearance-item">
+                <a href="https://www.pbs.org/newshour/show/why-some-french-jews-are-joining-a-new-exodus-to-israel" target="_blank">PBS NewsHour: Why some French Jews are joining a new exodus to Israel</a>
+                <p class="appearance-meta"><em>PBS NewsHour</em>, 2022</p>
+            </div>
+            
+            <div class="appearance-item">
+                <a href="https://buffett.northwestern.edu/news-events/events/2025/mena-histories-of-the-present-ethan-katz,-uc-berkeley.html" target="_blank">MENA Histories of the Present</a>
+                <p class="appearance-meta"><em>Northwestern Buffett Institute</em>, 2025</p>
+            </div>
+            
+            <div class="appearance-item">
+                <a href="https://www.brown.edu/academics/history/events/2023-ethan-katz" target="_blank">History Department Lecture</a>
+                <p class="appearance-meta"><em>Brown University</em>, 2023</p>
+            </div>
+        </div>
+
+        <h2>Press Coverage</h2>
+        
+        <p class="press-links">
+            <a href="https://www.pbs.org/newshour/show/what-whoopi-goldbergs-holocaust-remarks-can-teach-us-about-antisemitism" target="_blank">PBS NewsHour</a> · 
+            <a href="https://forward.com/culture/328135/historian-offers-ray-of-hope-for-jewish-muslim-relations/" target="_blank">The Forward</a> · 
+            <a href="https://www.timesofisrael.com/french-jewish-muslim-relations-are-always-troubled-says-historian/" target="_blank">Times of Israel</a> · 
+            <a href="https://newbooksnetwork.com/ethan-katz-the-burdens-of-brotherhood-jews-and-muslims-from-north-africa-to-france-harvard-up-2015" target="_blank">New Books Network</a> · 
+            <a href="http://publishersweekly.com/978-0-674-08868-9" target="_blank">Publisher's Weekly</a>
+        </p>
+
+        <div class="resource-note">
+            <strong>Educational Resource:</strong> Ethan appears in <a href="https://www.antisemitisminourmidst.com/" target="_blank">"Antisemitism in Our Midst"</a>, a training film for educators developed in partnership with UC Berkeley and other institutions.
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://scholar.google.com/citations?user=p2s5SUcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            <a href="https://berkeley.academia.edu/EthanKatz" target="_blank">Academia.edu</a>
+            <a href="https://www.linkedin.com/in/ethan-katz-4604a517/" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>

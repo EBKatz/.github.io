@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books | Ethan B. Katz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ink: #1a1a1a;
+            --color-parchment: #f8f5f0;
+            --color-gold: #9b7d3a;
+            --color-gold-light: #c9a95b;
+            --color-slate: #4a5568;
+            --color-warm-white: #fdfcfa;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-parchment);
+            color: var(--color-ink);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+        nav {
+            background: var(--color-warm-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(155, 125, 58, 0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        nav .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        nav .site-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+        nav .site-name:hover { color: var(--color-gold); }
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-slate);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            transition: width 0.3s ease;
+        }
+        nav a:hover, nav a.active { color: var(--color-gold); }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        main {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+        h1 {
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--color-ink);
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--color-gold);
+        }
+        .books-grid {
+            display: grid;
+            gap: 3rem;
+        }
+        .book {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 1.75rem;
+            align-items: start;
+        }
+        .book-cover-img {
+            width: 130px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.15);
+        }
+        .book-cover.forthcoming {
+            width: 130px;
+            height: 195px;
+            background: linear-gradient(135deg, #5a6d7a 0%, #3a4a5a 100%);
+            border-radius: 4px;
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        .book-cover.forthcoming span {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        .book-info h2 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--color-ink);
+        }
+        .book-info h2::after { display: none; }
+        .book-meta {
+            font-size: 0.9rem;
+            color: var(--color-gold);
+            margin-bottom: 0.75rem;
+        }
+        .book-description {
+            color: var(--color-slate);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+        .book-awards {
+            font-size: 0.85rem;
+            color: var(--color-gold);
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+        .amazon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #FF9900;
+            color: #111;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .amazon-btn:hover {
+            background: #e68a00;
+            transform: translateY(-1px);
+        }
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--color-warm-white);
+            border-top: 1px solid rgba(155, 125, 58, 0.15);
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .social-links a {
+            color: var(--color-slate);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover { color: var(--color-gold); }
+        @media (max-width: 600px) {
+            .book { grid-template-columns: 1fr; }
+            .book-cover-img, .book-cover.forthcoming { width: 110px; }
+            nav ul { gap: 1rem; }
+            nav .nav-inner { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="site-name">Ethan B. Katz</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html" class="active">Books</a></li>
+                <li><a href="timeline.html">Timeline</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="writing.html">Writing</a></li>
+                <li><a href="media.html">Media</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Books</h1>
+        
+        <div class="books-grid">
+            <article class="book">
+                <div class="book-cover forthcoming">
+                    Forthcoming
+                    <span>2026</span>
+                </div>
+                <div class="book-info">
+                    <h2>Freeing the Empire</h2>
+                    <p class="book-meta">Forthcoming</p>
+                    <p class="book-description">The Uprising of Jews and Antisemites That Helped Win World War II. This book tells the untold story of the mostly Jewish resistance fighters who helped secure Operation Torch in Algiers — working alongside French officers, some of whom were antisemites.</p>
+                </div>
+            </article>
+
+            <article class="book">
+                <img src="covers/Burdens.jpg" alt="The Burdens of Brotherhood cover" class="book-cover-img">
+                <div class="book-info">
+                    <h2>The Burdens of Brotherhood</h2>
+                    <p class="book-meta">Harvard University Press, 2015</p>
+                    <p class="book-description">Jews and Muslims from North Africa to France. Headlines from France suggest that Muslims have renewed an age-old struggle against Jews. But the past tells a different story. Focusing on the experiences of ordinary people, this book traces Jewish-Muslim encounters from World War I to the 2015 Paris attacks.</p>
+                    <p class="book-awards">🏆 National Jewish Book Award · J. Russell Major Prize (AHA) · American Library in Paris Book Award · David H. Pinkney Prize (SFHS)</p>
+                    <a href="https://www.amazon.com/Burdens-Brotherhood-Muslims-Africa-France/dp/0674088689" target="_blank" class="amazon-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66.704-3.716 4.06-4.838 7.066-4.838 1.537 0 3.547.41 4.758 1.574 1.538 1.436 1.392 3.352 1.392 5.438v4.923c0 1.481.616 2.13 1.192 2.929.204.287.249.63-.01.839-.647.541-1.794 1.537-2.423 2.099l-.008-.007z"/></svg>
+                        Buy on Amazon
+                    </a>
+                </div>
+            </article>
+
+            <article class="book">
+                <img src="covers/Colonialsm.jpeg" alt="Colonialism and the Jews cover" class="book-cover-img">
+                <div class="book-info">
+                    <h2>Colonialism and the Jews</h2>
+                    <p class="book-meta">Indiana University Press, 2017 · Co-edited with Lisa Moses Leff and Maud Mandel</p>
+                    <p class="book-description">The most extended examination to date of Jewish history in light of the new colonial history. Includes a section on "Zionism and Colonialism" widely praised as among the most rigorous and balanced treatments of that complex topic.</p>
+                    <p class="book-awards">🏆 Finalist, National Jewish Book Award</p>
+                    <a href="https://www.amazon.com/Colonialism-Jews-Modern-Jewish-Experience/dp/0253024579" target="_blank" class="amazon-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66.704-3.716 4.06-4.838 7.066-4.838 1.537 0 3.547.41 4.758 1.574 1.538 1.436 1.392 3.352 1.392 5.438v4.923c0 1.481.616 2.13 1.192 2.929.204.287.249.63-.01.839-.647.541-1.794 1.537-2.423 2.099l-.008-.007z"/></svg>
+                        Buy on Amazon
+                    </a>
+                </div>
+            </article>
+
+            <article class="book">
+                <img src="covers/Secularism.jpeg" alt="Secularism in Question cover" class="book-cover-img">
+                <div class="book-info">
+                    <h2>Secularism in Question</h2>
+                    <p class="book-meta">University of Pennsylvania Press, 2015 · Co-edited with Ari Joskowicz</p>
+                    <p class="book-description">Jews and Judaism in Modern Times. This volume illustrates how the categories of "religious" and "secular" have frequently proven far more permeable than fixed, challenging assumptions about the development of secularism that emerge from Protestant European and American perspectives.</p>
+                    <a href="https://www.amazon.com/Secularism-Question-Judaism-Culture-Contexts/dp/0812247272" target="_blank" class="amazon-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66.704-3.716 4.06-4.838 7.066-4.838 1.537 0 3.547.41 4.758 1.574 1.538 1.436 1.392 3.352 1.392 5.438v4.923c0 1.481.616 2.13 1.192 2.929.204.287.249.63-.01.839-.647.541-1.794 1.537-2.423 2.099l-.008-.007z"/></svg>
+                        Buy on Amazon
+                    </a>
+                </div>
+            </article>
+
+            <article class="book">
+                <img src="https://images.routledge.com/common/jackets/crclarge/978100336/9781003364078.jpg" alt="When Jews Argue cover" class="book-cover-img">
+                <div class="book-info">
+                    <h2>When Jews Argue</h2>
+                    <p class="book-meta">Routledge, 2023 · Co-edited with Elisha Ancselovits and Sergey Dolgopolski</p>
+                    <p class="book-description">Between the University and the Beit Midrash. An interdisciplinary volume exploring how traditions of Jewish argument and interpretation intersect with academic inquiry.</p>
+                    <a href="https://www.amazon.com/When-Argue-Routledge-Approaches-History/dp/103242740X" target="_blank" class="amazon-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.7-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.074-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.66 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66.704-3.716 4.06-4.838 7.066-4.838 1.537 0 3.547.41 4.758 1.574 1.538 1.436 1.392 3.352 1.392 5.438v4.923c0 1.481.616 2.13 1.192 2.929.204.287.249.63-.01.839-.647.541-1.794 1.537-2.423 2.099l-.008-.007z"/></svg>
+                        Buy on Amazon
+                    </a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://scholar.google.com/citations?user=p2s5SUcAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            <a href="https://berkeley.academia.edu/EthanKatz" target="_blank">Academia.edu</a>
+            <a href="https://www.linkedin.com/in/ethan-katz-4604a517/" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+</html>
